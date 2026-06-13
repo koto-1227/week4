@@ -39,7 +39,17 @@
       "updated_at": "2026-04-01T19:00:00+09:00"
     }
   ],
-  "total": 1
+  "total": 1,
+  
+}
+```
+### Response 500
+```json
+{
+  "error": {
+    "code": "INTERNAL_SERVER_ERROR",
+    "message": "unexpected error occurred"
+  }
 }
 ```
 
@@ -106,6 +116,16 @@
   }
 }
 ```
+### Response 422
+```json
+{
+  "error": {
+    "code": "UNPROCESSABLE_ENTITY",
+    "message": "status must be one of: todo, doing, done"
+  }
+}
+```
+
 
 ## 5. タスク更新
 - Method: `PUT`
@@ -133,6 +153,25 @@
   "updated_at": "2026-04-01T20:30:00+09:00"
 }
 ```
+### Response 404（該当なし）
+```json
+{
+  "error": {
+    "code": "NOT_FOUND",
+    "message": "task not found"
+  }
+}
+```
+
+### Response 422（値が違う）
+```json
+{
+  "error": {
+    "code": "UNPROCESSABLE_ENTITY",
+    "message": "status must be one of: todo, doing, done"
+  }
+}
+```
 
 ## 6. タスク削除
 - Method: `DELETE`
@@ -140,3 +179,13 @@
 
 ### Response 204
 本文は返しません。
+
+### Response 404（該当なし）
+```json
+{
+  "error": {
+    "code": "NOT_FOUND",
+    "message": "task not found"
+  }
+}
+```
